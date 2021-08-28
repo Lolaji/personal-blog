@@ -1,0 +1,291 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Lolaji's Blog</title>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+        <link rel="stylesheet" href=" {% static 'public/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/normalize.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/scrollbar.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/fontawesome/fontawesome-all.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/jquery-ui.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/linearicons.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/tipso.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/chosen.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/prettyPhoto.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/main.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/dashboard.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/color.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/transitions.css' %}">
+        <link rel="stylesheet" href=" {% static 'public/css/responsive.css' %}">
+
+
+        <script src=" {% static 'public/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+
+    </head>
+    
+    <body class="bg-light {% if user.is_authenticated %} {%with class='wt-login' %} {{ class }} {% endwith %} {% endif %}">
+<!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!-- Preloader Start -->
+	<div class="preloader-outer">
+            <div class="loader "></div>
+        </div>
+        <!-- Preloader End -->
+        <!-- Wrapper Start -->
+        <div id="wt-wrapper" class="wt-wrapper wt-haslayout">
+            <!-- Content Wrapper Start -->
+            <div class="wt-contentwrapper">
+                <!-- Header Start -->
+                <header id="wt-header" class="wt-header wt-headervtwo wt-haslayout">
+                    <div class="wt-navigationarea">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <strong class="wt-logo"><a href="index.html"><img src="images/logo.png" alt="Lolaji's Blog"></a></strong>
+                                    <form class="wt-formtheme wt-formbanner wt-formbannervtwo">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <input type="text" name="job" class="form-control" placeholder="I’m looking for">
+                                                <div class="wt-formoptions">
+                                                    <div class="wt-dropdown">
+                                                        <span>In: <em class="selected-search-type">Freelancers </em><i class="lnr lnr-chevron-down"></i></span>
+                                                    </div>
+                                                    <div class="wt-radioholder">
+                                                        <span class="wt-radio">
+                                                            <input id="wt-freelancers" data-title="Freelancers" type="radio" name="searchtype" value="freelancer" checked="">
+                                                            <label for="wt-freelancers">Freelancers</label>
+                                                        </span>
+                                                        <span class="wt-radio">
+                                                            <input id="wt-jobs" data-title="Jobs" type="radio" name="searchtype" value="job">
+                                                            <label for="wt-jobs">Jobs</label>
+                                                        </span>
+                                                        <span class="wt-radio">
+                                                            <input id="wt-companies" data-title="Companies" type="radio" name="searchtype" value="job">
+                                                            <label for="wt-companies">Companies</label>
+                                                        </span>
+                                                    </div>
+                                                    <a href="javascrip:void(0);" class="wt-searchbtn"><i class="lnr lnr-magnifier"></i></a>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                    <div class="wt-rightarea">
+                                        <nav id="wt-nav" class="wt-nav navbar-expand-lg">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                                <i class="lnr lnr-menu"></i>
+                                            </button>
+                                            <div class="collapse navbar-collapse wt-navigation" id="navbarNav">
+                                                <ul class="navbar-nav">
+                                                    <li class="nav-item"><a href="{% url 'blog-home' %}">Home</a></li>
+                                                    <li class="nav-item"><a href="{% url 'blog-home' %}">Blog List</a></li>
+                                                    <li class="nav-item"><a href="">About</a></li>
+                                                    <li class="nav-item"><a href="">Contact Us</a></li>
+                                                </ul>
+                                            </div>
+                                        </nav>
+                                        {% if not user.is_authenticated %}
+                                        <div class="wt-loginarea">
+                                            <figure class="wt-userimg">
+                                                <img src="{% static 'public/images/user-login.png' %}" alt="img description">
+                                            </figure>
+                                            <div class="wt-loginoption">
+                                                <a href="{% url 'signin-page' %}" id="" class="wt-loginbtn">Login</a>
+                                            </div>
+                                            <a href="{% url 'signup-page' %}" class="wt-btn">Join Now</a>
+                                        </div>
+                                        {% else %}
+                                        <div class="wt-userlogedin">
+                                            <figure class="wt-userimg">
+                                                <img src="{{ user.profile.image.url }}" alt="image description">
+                                            </figure>
+                                            <div class="wt-username">
+                                                <h3>{{ user }}</h3>
+                                                <span>Amento Tech</span>
+                                            </div>
+                                            <nav class="wt-usernav">
+                                                <ul>
+                                                    <li><a href=""><span>Dashboard</span></a></li>
+                                                    <li class="menu-item-has-children page_item_has_children">
+                                                        <a href="javascript:void(0);">
+                                                            <span>Manage Post</span>
+                                                        </a>
+                                                        <ul class="sub-menu children">
+                                                            <li><a href="{% url 'blog-create' %}">Create Post</a></li>
+                                                            <li><a href="">Post List</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'profile-page' %}">
+                                                            <span>My Profile</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'logout' %}">
+                                                            <span>Logout</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!--Header End-->
+                <!--Inner Home Banner Start-->
+                <div class="wt-haslayout wt-innerbannerholder">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                                <div class="wt-innerbannercontent">
+                                <div class="wt-title"><h2>Latest Articules</h2></div>
+                                <ol class="wt-breadcrumb">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li class="wt-active">Articles</li>
+                                </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Inner Home End-->
+
+                <!--Main Start-->
+                <main id="wt-main" class="wt-main wt-haslayout ">
+                    <!--Categories Start-->
+                    <div class="wt-haslayout wt-main-section">
+                        <div class="container">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}"> {{ message }} </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                    <!--Limitless Experience End-->
+                </main>
+                <!--Main End-->
+
+                <!--Footer Start-->
+                <footer id="wt-footer" class="wt-footer wt-haslayout">
+                    <div class="wt-footerholder wt-haslayout">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="wt-footerlogohold">
+                                        <strong class="wt-logo"><a href="index.html"><img src="images/flogo.png" alt="company logo here"></a></strong>
+                                        <div class="wt-description">
+                                            <p>Dotem eiusmod tempor incune utnaem labore etdolore maigna aliqua enim poskina ilukita ylokem lokateise ination voluptate velit esse cillum dolore eu fugiat nulla pariatur lokaim urianewce <a href="javascript:void(0);">more...</a></p>
+                                        </div>
+                                        <ul class="wt-socialiconssimple wt-socialiconfooter">
+                                            <li class="wt-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook-f"></i></a></li>
+                                            <li class="wt-twitter"><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
+                                            <li class="wt-youtube"><a href="javascript:void(0);"><i class="fab fa-youtube"></i></a></li>
+                                            <li class="wt-instagram"><a href="javascript:void(0);"><i class="fab fa-instagram"></i></a></li>
+                                            <li class="wt-googleplus"><a href="javascript:void(0);"><i class="fab fa-google-plus-g"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+                                    <div class="wt-footercol wt-widgetcompany">
+                                        <div class="wt-fwidgettitle">
+                                            <h3>Company</h3>
+                                        </div>
+                                        <ul class="wt-fwidgetcontent">
+                                            <li><a href="javascript:void(0);">About Us</a></li>
+                                            <li><a href="javascript:void(0);">How It Works</a></li>
+                                            <li><a href="javascript:void(0);">Careers</a></li>
+                                            <li><a href="javascript:void(0);">Terms &amp; Conditions</a></li>
+                                            <li><a href="javascript:void(0);">Trust &amp; Safety</a></li>
+                                            <li class="wt-viewmore"><a href="javascript:void(0);">+ View All</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+                                    <div class="wt-footercol wt-widgetexplore">
+                                        <div class="wt-fwidgettitle">
+                                            <h3>Explore More</h3>
+                                        </div>
+                                        <ul class="wt-fwidgetcontent">
+                                            <li><a href="javascript:void(0);">Freelancers in USA</a></li>
+                                            <li><a href="javascript:void(0);">Freelancers in Canada</a></li>
+                                            <li><a href="javascript:void(0);">Freelancers in Australia</a></li>
+                                            <li><a href="javascript:void(0);">Jobs in USA</a></li>
+                                            <li><a href="javascript:void(0);">Find Jobs</a></li>
+                                            <li class="wt-viewmore"><a href="javascript:void(0);">+ View All</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wt-haslayout wt-joininfo">
+                        <div class="container">
+                            <div class="row justify-content-md-center">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 push-lg-1">
+                                    <div class="wt-companyinfo">
+                                        <span><a href="javascript:void(0);">New @ Worktern?</a> Dotem eiusmod tempor incune utnaem labore etdolore.</span>
+                                    </div>
+                                    <div class="wt-fbtnarea">
+                                        <a href="javascript:void(0)" class="wt-btn">Join Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wt-haslayout wt-footerbottom">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <p class="wt-copyrights"><span>Worktern.</span> © 2018 All Rights Reserved.</p>
+                                    <nav class="wt-addnav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">News</a></li>
+                                            <li><a href="javascript:void(0);">Terms &amp; Conditions</a></li>
+                                            <li><a href="javascript:void(0);">Privacy Policy</a></li>
+                                            <li><a href="javascript:void(0);">Career</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!--Footer End-->
+            </div>
+            <!--Content Wrapper End-->
+        </div>
+        <!--Wrapper End-->
+        <script src="{% static 'public/js/vendor/jquery-3.3.1.js' %}"></script>
+        <script src="{% static 'public/js/vendor/jquery-library.js' %}"></script>
+        <script src="{% static 'public/js/vendor/bootstrap.min.js' %}"></script>
+        <script src="{% static 'public/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'public/js/chosen.jquery.js' %}"></script>
+        <script src="{% static 'public/js/tilt.jquery.js' %}"></script>
+        <script src="{% static 'public/js/scrollbar.min.js' %}"></script>
+        <script src="{% static 'public/js/prettyPhoto.js' %}"></script>
+        <script src="{% static 'public/js/jquery-ui.js' %}"></script>
+        <script src="{% static 'public/js/readmore.js' %}"></script>
+        <script src="{% static 'public/js/countTo.js' %}"></script>
+        <script src="{% static 'public/js/appear.js' %}"></script>
+        <script src="{% static 'public/js/tipso.js' %}"></script>
+        <script src="{% static 'public/js/jRate.js' %}"></script>
+        <script src="{% static 'public/js/main.js' %}"></script>
+    </body>
+</html>

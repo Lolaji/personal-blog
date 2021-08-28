@@ -1,0 +1,102 @@
+
+{% extends 'public/content.html' %}
+
+{% block content %}
+{% load static %}
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 float-left">
+            <div class="wt-articletabshold wt-articlelist">
+                <ul class="wt-navarticletab nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="active" id="all-tab" data-toggle="tab" href="#alltab">All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="business-tab" data-toggle="tab" href="#business">Business</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="trading-tab" data-toggle="tab" href="#trading">Trading</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="economics-tab" data-toggle="tab" href="#economics">Economics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="marketing-tab" data-toggle="tab" href="#marketing">Marketing</a>
+                    </li>
+                </ul>
+                <div class="tab-content wt-haslayout">
+                    <div class="wt-contentarticle tab-pane active fade show" id="alltab">
+                        <div class="row">
+                            {% for post in posts %}
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="wt-article">
+                                    <figure>
+                                        <img src="{{ post.author.profile.image.url }}" alt="img description">
+                                    </figure>
+                                    <div class="wt-articlecontent">
+                                        <div class="wt-title">
+                                            <h2> <a href="{% url 'blog-detail' post.id %}">{{post.title}} </a></h2>
+                                        </div>
+                                        <ul class="wt-postarticlemeta">
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <i class="lnr lnr-clock"></i>
+                                                    <span> {{post.date_posted}} </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'user-posts' post.author.username %}">
+                                                    <i class="lnr lnr-user"></i>
+                                                    <span> {{post.author}} </span>
+                                                </a>
+                                            </li>
+                                            {% if user.is_authenticated and user == post.author %}
+                                            <li>
+                                                <a href="{% url 'blog-update' post.id %}">
+                                                    <i class="fa fa-pencil"></i>
+                                                    <span> Update Post </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'blog-delete' post.id %}">
+                                                    <i class="fa fa-trash-o"></i>
+                                                    <span> Delete Post </span>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    {% if is_paginated %}
+                    <nav class="wt-pagination">
+                        <ul>
+                            {% if page_obj.has_previous %}
+                                <li class="wt-prevpage"><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>
+                                <li class="wt-prevpage"><a href="?page={{ page_obj.previous_page_number }}"><i class="lnr lnr-chevron-left"></i></a></li>
+                            {% endif %}
+
+                            {% for num in page_obj.paginator.page_range %}
+                                {% if page_obj.number == num %}
+                                    <li><a href="/?page={{ num }}" class="active"> {{ num }} </a></li>
+                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                    <li><a href="/?page={{ num }}"> {{ num }} </a></li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                                <li class="wt-nextpage"><a href="/?page={{ page_obj.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a></li>
+                                <li class="wt-nextpage"><a href="/?page={{ page_obj.next_page_number }}"><i class="lnr lnr-chevron-right"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+                
+{% endblock content %}

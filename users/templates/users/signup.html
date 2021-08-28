@@ -1,0 +1,49 @@
+{% extends 'public/content.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row justify-content-md-center">
+        <div class="col-xs-12 col-sm-12 col-md-10 push-md-1 col-lg-8 push-lg-2">
+            <div class="wt-registerformhold">
+                <div class="wt-registerformmain">
+                    <div class="wt-registerhead">
+                        <div class="wt-title">
+                            <h3>Join For a Good Start</h3>
+                        </div>
+                        <div class="wt-description">
+                            <p>Signup for a new account today.</p>
+                        </div>
+                    </div>
+                    <div class="wt-joinforms">
+                        <form class="wt-formtheme wt-formregister" method="POST">
+                            {% csrf_token %}
+                            <fieldset class="wt-registerformgroup">
+                                {{ form|crispy }}
+                                <div class="form-group">
+                                    <button type="submit" class="wt-btn">Start Now</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <div class="wt-joinnowholder">
+                            <div class="wt-title">
+                                <h4>Join Now With</h4>
+                            </div>
+                            <div class="wt-description">
+                                <p>Use a social account for faster login or easy registration to directly get in to your account and start a good business</p>
+                            </div>
+                            <ul class="wt-socialicons wt-iconwithtext">
+                                <li class="wt-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook-f"></i><em>Facebook</em></a>
+                                </li>
+                                <li class="wt-twitter"><a href="javascript:void(0);"><i class="fab fa-twitter"></i><em>Twitter</em></a></li>
+                                <li class="wt-googleplus"><a href="javascript:void(0);"><i class="fab fa-google-plus-g"></i><em>Google</em></a></li>
+                                <li class="wt-instagram"><a href="javascript:void(0);"><i class="fab fa-instagram"></i><em>Instagram</em></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="wt-registerformfooter">
+                    <span>Already Have an Account? <a href="{% url 'signin-page' %}">Login Now</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
